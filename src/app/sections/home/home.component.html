@@ -1,0 +1,40 @@
+<div class="container">
+    <div class="row mt-5">
+        <div class="col">
+            <a class="btn btn-success" href="/create">Nuevo</a>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">CODIGO</th>
+                        <th scope="col">NOMBRES</th>
+                        <th scope="col">APELLIDOS</th>
+                        <th scope="col">CORREO</th>
+                        <th scope="col">OPCIONES</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let user of users | paginate: { itemsPerPage: 5, currentPage: p }">
+                        <th scope="row">{{user.id}}</th>
+                        <td>{{user.firstname}}</td>
+                        <td>{{user.lastname}}</td>
+                        <td>{{user.email}}</td>
+                        <td>
+                            <button class="btn btn-primary" (click)="editUser(user)">Editar</button>
+                            <button class="btn btn-danger" (click)="deleteUser(user)">Eliminar</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <pagination-controls 
+                (pageChange)="p = $event"
+                previousLabel="Anterior"
+                nextLabel="Siguiente"
+            >
+            </pagination-controls>
+        </div>
+    </div>    
+</div>
